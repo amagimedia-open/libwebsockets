@@ -1034,6 +1034,10 @@ lws_create_context(const struct lws_context_creation_info *info)
 		else
 			context->max_http_header_data = LWS_DEF_HEADER_LEN;
 
+	// cookie size was more than LWS_DEF_HEADER_LEN (4096)
+	// so increasing it to 32768
+	context->max_http_header_data = 32768; // 8 * LWS_DEF_HEADER_LEN
+
 	if (info->max_http_header_pool)
 		context->max_http_header_pool = info->max_http_header_pool;
 	else
